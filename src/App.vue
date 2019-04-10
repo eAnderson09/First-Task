@@ -1,27 +1,39 @@
 <template>
   <div id="app">
     <router-view></router-view>
-    <router-link class="button-change" to="/">Input</router-link>
-    <router-link class="button-change" to="/currency">Select currency</router-link>
-
+<!--    <h1 v-for="(item, index) in posts" :key="index">{{item.sale}}</h1>-->
   </div>
 </template>
 
 <script>
 import Input from './Input.vue'
 import Currency from './Currency.vue'
+import Change from './Change'
+import {mapState} from 'vuex'
 
 
 export default {
   components: {
     appInput: Input,
-    appCurrency: Currency
+    appCurrency: Currency,
+    appChange: Change
   },
   name: 'app',
   data () {
     return {
       msg: 'Insert the number'
     }
+  },
+  mounted() {
+    this.$store.dispatch('loadPosts')
+  },
+  computed: {
+    ...mapState([
+      'posts'
+    ])
+  },
+  acceptInput() {
+
   }
 }
 </script>

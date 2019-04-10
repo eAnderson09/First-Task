@@ -4,15 +4,22 @@
     <h1>{{ msg }}</h1>
 
     <input type="number" size="40" v-model="input">
-    <h4>UAH: {{ input }}</h4>
+    <h4>Money: {{ input }}</h4>
 
     <button @click="clear()">Clear</button>
+    <router-link class="button-change" to="/currency" >Select currency</router-link>
 
   </div>
 </template>
 
 <script>
+  import Currency from './Currency.vue'
+
+
   export default {
+    components: {
+      appCurrency: Currency
+    },
     data () {
       return {
         msg: 'Insert the number',
@@ -22,8 +29,10 @@
     methods: {
       clear() {
         this.input = 0
-      }
-
+      },
+    },
+    beforeDestroy() {
+      this.$store.commit('dataUpdate', +this.input);
     }
   }
 </script>

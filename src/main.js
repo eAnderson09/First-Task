@@ -3,11 +3,14 @@ import VueRouter from 'vue-router'
 import App from './App'
 import Input from "./Input"
 import Currency from "./Currency"
+import store from "./store"
+import Change from "./Change";
 
 Vue.use(VueRouter)
   const routes = [
     { path: '/', component: Input },
-    { path: '/currency', component: Currency}
+    { path: '/currency', component: Currency},
+    { path: '/change', component: Change}
   ]
 
   const router = new VueRouter({
@@ -17,6 +20,7 @@ Vue.use(VueRouter)
 
 new Vue({
   el: '#app',
+  store,
   router,
   render: h => h(App)
 })

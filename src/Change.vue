@@ -2,6 +2,8 @@
   <div>
     <h1>Result</h1>
 
+    <h2>{{this.$store.getters.change}}</h2>
+
     <router-link class="button-change" to="/">Back to main menu</router-link>
   </div>
 </template>

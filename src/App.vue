@@ -31,9 +31,6 @@ export default {
     ...mapState([
       'posts'
     ])
-  },
-  acceptInput() {
-
   }
 }
 </script>

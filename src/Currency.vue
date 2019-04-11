@@ -2,8 +2,8 @@
   <div>
     <ul>
       <li v-for="post in posts">
-        <label><input type="radio" :value="post.sale" name="button">{{post.ccy}} to {{post.base_ccy}}</label>
-        <label><input type="radio" :value="post.buy" name="button">{{post.base_ccy}} to {{post.ccy}}</label>
+        <label><input v-model="chooseValue" type="radio" :value="{cur: post.sale, isSale: true}" name="button">{{post.ccy}} to {{post.base_ccy}}</label>
+        <label><input v-model="chooseValue" type="radio" :value="{cur: post.buy, isSale: false}" name="button">{{post.base_ccy}} to {{post.ccy}}</label>
       </li>
     </ul>
     <h1>{{this.$store.state.data}}</h1>
@@ -33,9 +33,12 @@
         name: "Currency",
       data() {
           return {
-
+            chooseValue: {}
           }
-      }
+      },
+    beforeDestroy() {
+      this.$store.commit('changeCurrencyInfo', this.chooseValue)
+    }
     }
 </script>
 

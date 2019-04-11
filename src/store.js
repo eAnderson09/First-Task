@@ -8,7 +8,8 @@ export default new vuex.Store({
   state: {
     posts: [],
     data: null,
-    cur: null
+    cur: null,
+    isSale: true
   },
   actions: {
     loadPosts({commit}) {
@@ -23,6 +24,11 @@ export default new vuex.Store({
         })
     }
   },
+  getters: {
+    change: state => {
+      return state.isSale ? state.data * state.cur : state.data / state.cur
+    }
+  },
   mutations: {
     SET_POSTS (state, posts) {
       state.posts = posts
@@ -30,8 +36,9 @@ export default new vuex.Store({
     dataUpdate(state, value) {
       state.data = value
     },
-    chooseCur(state, number) {
-      state.cur = number
+    changeCurrencyInfo(state, currency) {
+      state.cur = currency.cur
+      state.isSale = currency.isSale
     }
   }
 })
